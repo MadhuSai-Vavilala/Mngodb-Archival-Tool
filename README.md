@@ -7,12 +7,18 @@ A precision-controlled, automated lifecycle manager for MongoDB with selective f
 MongoTrim - MongoDB Archival Tool is a Node.js CLI + GUI utility designed to safely archive large MongoDB collections in controlled batches.  
 It prevents performance impact, supports automated maintenance windows, provides real-time monitoring, and ensures fully auditable operations.
 
-This tool is ideal for:
-- Production clusters  
-- Time-series or log collections  
-- Compliance-driven retention cleanup  
-- Daily/weekly scheduled maintenance  
-- Safe batch-wise deletions  
+## 🚨 Why This Tool Exists
+Purging or archiving large volumes of documents in MongoDB is one of the riskiest operations in production.
+A single unplanned mass-delete can easily cause:
+
+- 🔥 WiredTiger cache pressure & memory spikes
+- 🐌 Replication lag
+- ⛔ Locking stalls & slow queries
+- 💥 Primary failovers or mongod crashes
+- 📉 Overall performance degradation
+
+MongoDB does not provide an easy, built-in way to safely trim collections in small batches with throttling, monitoring, and rollback safety.
+That’s exactly why this tool was created.
 
 ---
 
@@ -30,7 +36,7 @@ This tool is ideal for:
 
 ### ✔ Maintenance Window  
 - Optional start/end window  
-- Auto-stop outside window  
+- Auto-stop outside the window  
 - Prevents accidental day-time archival  
 
 ### ✔ Real-Time GUI Dashboard  
@@ -38,11 +44,9 @@ This tool is ideal for:
 - Total documents & batch count  
 - Deleted count  
 - Backup files  
-- ETA calculation  
+- Average Batch Time Calculation  
 - Config summary  
-- MongoDB health  
-Powered by small Express server using:  
-`progress.json`, `current_config.json`, `mongo_health.json`.
+- MongoDB health  (Replication Lag, Oplog and WT tickets, Member States)
 
 ### ✔ Pre-Validation (Dry Run)  
 Tool validates:
@@ -51,21 +55,18 @@ Tool validates:
 - Filter  
 - Count of documents  
 - Estimated batches  
-- Disk space (>20% required)  
-- Backup directories  
+- Disk space (>10% required)  
+- Backup directory and permissions  
 
 ### ✔ Rich Logging  
 - `archive.log` (line-delimited JSON)  
 - `progress.json` (live progress)  
-- `current_config.json` (snapshot)  
-- `mongo_health.json`  
-- `guiStats.log`  
+- `current_config.json` (snapshot of config)  
 
 ### ✔ Telegram Alerts (optional)
 - Start alert  
 - Stop alert  
-- Periodic interval updates  
-- Backup summary  
+- Periodic interval updates - Upcoming Release
 
 ---
 
