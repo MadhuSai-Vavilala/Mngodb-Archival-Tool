@@ -1,6 +1,7 @@
 {
-  "name": "mongodb-archival-tool",
+  "name": "mongotrim",
   "version": "1.0.0",
+  "description": "MongoTrim – An intelligent MongoDB data aging, trimming, pruning and archival automation tool.",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
@@ -8,6 +9,23 @@
     "dry": "node index.js --dryRun",
     "scheduler": "node lib/scheduler.js",
     "gui": "node server/gui.js"
+  },
+  "keywords": [
+    "mongodb",
+    "archival",
+    "data-aging",
+    "data-trimming",
+    "cleanup",
+    "automation",
+    "cli",
+    "database-tools",
+    "mongodb-maintenance"
+  ],
+  "author": "Madhu Sai Vavilala",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MadhuSai-Vavilala/MongoDB_Archival_Tool"
   },
   "dependencies": {
     "axios": "^1.6.0",
